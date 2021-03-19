@@ -1,0 +1,57 @@
+package com.gihub.DenPeshkov.DataStructures;
+
+import java.util.Iterator;
+
+public class Stack_LinkedList<T> implements Iterable<T> {
+  private int N;
+  private Node<T> first;
+
+  private static class Node<T> {
+    private T item;
+    private Node<T> next;
+  }
+
+  public void push(T item) {
+    Node<T> temp = new Node<>();
+    temp.item = item;
+    temp.next = first;
+    first = temp;
+    N++;
+  }
+
+  public T pop() {
+    Node<T> node = first;
+    first = first.next;
+    N--;
+    return node.item;
+  }
+
+  public boolean isEmpty() {
+    return N == 0; // Or first == null
+  }
+
+  public int size() {
+    return N;
+  }
+
+  @Override
+  public Iterator<T> iterator() {
+    return null;
+  }
+
+  private class StackIterator implements Iterator<T> {
+    private Node<T> node = first;
+
+    @Override
+    public boolean hasNext() {
+      return node != null;
+    }
+
+    @Override
+    public T next() {
+      T item = node.item;
+      node = node.next;
+      return item;
+    }
+  }
+}
