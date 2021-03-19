@@ -1,2 +1,2 @@
 # AlgorithmsAndDataStructures
-Repos of implementations of various algorithms and data structures
+Repository of implementations of various algorithms and data structures
