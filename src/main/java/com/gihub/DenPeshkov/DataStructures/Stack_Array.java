@@ -1,5 +1,6 @@
 package com.gihub.DenPeshkov.DataStructures;
 
+import java.util.Arrays;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
@@ -35,9 +36,7 @@ public class Stack_Array<T> implements Iterable<T> {
   }
 
   private void resize(int size) {
-    T[] temp = (T[]) new Object[size];
-    System.arraycopy(arr, 0, temp, 0, arr.length);
-    arr = temp;
+    arr = Arrays.copyOf(arr, size);
   }
 
   @Override
@@ -55,6 +54,7 @@ public class Stack_Array<T> implements Iterable<T> {
 
     @Override
     public T next() {
+      if (!hasNext()) throw new NoSuchElementException();
       return arr[--i];
     }
   }
