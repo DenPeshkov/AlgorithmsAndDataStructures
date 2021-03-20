@@ -4,7 +4,7 @@ import java.util.Iterator;
 import java.util.NoSuchElementException;
 
 public class Stack_LinkedList<T> implements Iterable<T> {
-  private int N;
+  private int N = 0;
   private Node<T> first;
 
   private static class Node<T> {
@@ -21,6 +21,8 @@ public class Stack_LinkedList<T> implements Iterable<T> {
   }
 
   public T pop() {
+    if (isEmpty()) throw new NoSuchElementException();
+
     Node<T> node = first;
     first = first.next;
     N--;
