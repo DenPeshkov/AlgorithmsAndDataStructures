@@ -1,6 +1,7 @@
 package com.gihub.DenPeshkov.DataStructures;
 
 import java.util.Iterator;
+import java.util.NoSuchElementException;
 
 public class Stack_LinkedList<T> implements Iterable<T> {
   private int N;
@@ -49,6 +50,8 @@ public class Stack_LinkedList<T> implements Iterable<T> {
 
     @Override
     public T next() {
+      if (!hasNext()) throw new NoSuchElementException();
+
       T item = node.item;
       node = node.next;
       return item;
