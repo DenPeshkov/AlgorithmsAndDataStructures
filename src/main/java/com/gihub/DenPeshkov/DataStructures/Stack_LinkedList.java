@@ -8,15 +8,17 @@ public class Stack_LinkedList<T> implements Iterable<T> {
   private Node<T> first;
 
   private static class Node<T> {
-    private T item;
-    private Node<T> next;
+    private final T item;
+    private final Node<T> next;
+
+    public Node(T item, Node<T> next) {
+      this.item = item;
+      this.next = next;
+    }
   }
 
   public void push(T item) {
-    Node<T> temp = new Node<>();
-    temp.item = item;
-    temp.next = first;
-    first = temp;
+    first = new Node<>(item, first);
     N++;
   }
 
