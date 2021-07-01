@@ -17,10 +17,8 @@ public class Queue_LinkedList<T> implements Iterable<T> {
     Node<T> node = new Node<>();
     node.item = item;
     node.next = null;
-    if (isEmpty()) {
-      tail = node;
-      head = tail;
-    } else tail.next = node;
+    if (isEmpty()) head = tail;
+    else tail.next = node;
     tail = node;
     N++;
   }
