@@ -1,4 +1,4 @@
-package com.github.denpeshkov.datastructures.adt;
+package com.github.denpeshkov.datastructures.linked;
 
 import java.util.Iterator;
 import java.util.NoSuchElementException;
