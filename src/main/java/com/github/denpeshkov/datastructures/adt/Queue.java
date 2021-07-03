@@ -3,13 +3,13 @@ package com.github.denpeshkov.datastructures.adt;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
-public class Queue_Array<T> implements Iterable<T> {
+public class Queue<T> implements Iterable<T> {
   private T[] arr;
   private int head;
   private int tail;
   private int N;
 
-  public Queue_Array() {
+  public Queue() {
     arr = (T[]) new Object[4];
     head = 0;
     tail = 0;

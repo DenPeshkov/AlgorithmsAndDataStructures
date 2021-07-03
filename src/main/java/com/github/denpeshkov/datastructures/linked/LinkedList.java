@@ -3,12 +3,12 @@ package com.github.denpeshkov.datastructures.linked;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
-public class LinkedList_Single<T> implements Iterable<T> {
+public class LinkedList<T> implements Iterable<T> {
   private int N;
   private Node<T> head;
   private Node<T> tail;
 
-  public LinkedList_Single() {
+  public LinkedList() {
     head = new Node<>();
   }
 

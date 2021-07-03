@@ -4,11 +4,11 @@ import java.util.Arrays;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
-public class Stack_Array<T> implements Iterable<T> {
+public class Stack<T> implements Iterable<T> {
   private T[] arr;
   private int N;
 
-  public Stack_Array() {
+  public Stack() {
     arr = (T[]) new Object[4];
     N = 0;
   }

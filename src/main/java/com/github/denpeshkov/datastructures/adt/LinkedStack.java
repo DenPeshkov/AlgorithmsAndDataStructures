@@ -3,7 +3,7 @@ package com.github.denpeshkov.datastructures.adt;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
-public class Stack_LinkedList<T> implements Iterable<T> {
+public class LinkedStack<T> implements Iterable<T> {
   private int N = 0;
   private Node<T> first;
 

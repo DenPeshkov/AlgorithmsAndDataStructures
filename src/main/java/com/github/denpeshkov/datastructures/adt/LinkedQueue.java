@@ -3,7 +3,7 @@ package com.github.denpeshkov.datastructures.adt;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
-public class Queue_LinkedList<T> implements Iterable<T> {
+public class LinkedQueue<T> implements Iterable<T> {
   private Node<T> head;
   private Node<T> tail;
   private int N = 0;
