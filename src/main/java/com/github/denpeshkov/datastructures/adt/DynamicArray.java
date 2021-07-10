@@ -54,10 +54,11 @@ public class DynamicArray<T> implements Iterable<T> {
     return item;
   }
 
-  public int remove(T item) {
+  public boolean remove(T item) {
     int index = indexOf(item);
+    if (index == -1) return false;
     remove(index);
-    return index;
+    return true;
   }
 
   public int indexOf(T item) {
