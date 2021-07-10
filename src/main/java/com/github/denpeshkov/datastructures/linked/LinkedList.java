@@ -8,10 +8,6 @@ public class LinkedList<T> implements Iterable<T> {
   private Node<T> head;
   private Node<T> tail;
 
-  public LinkedList() {
-    head = new Node<>();
-  }
-
   private static class Node<T> {
     T item;
     Node<T> next;
@@ -39,10 +35,12 @@ public class LinkedList<T> implements Iterable<T> {
   }
 
   public T getFirst() {
+    if (isEmpty()) throw new NoSuchElementException();
     return head.item;
   }
 
   public T getLast() {
+    if (isEmpty()) throw new NoSuchElementException();
     return tail.item;
   }
 
@@ -115,11 +113,13 @@ public class LinkedList<T> implements Iterable<T> {
   }
 
   public T remove(T item) {
-    Node<T> node = head;
     int i;
-
-    for (i = 0; i < size() && node.item != item; i++) node = node.next;
-    return remove(i);
+    Node<T> node = head;
+    for (i = 0; i < size() - 1 && node.next.item != item; i++) node = node.next;
+    if (i == size() - 1) throw new NoSuchElementException();
+    T res = node.next.item;
+    node.next = node.next.next;
+    return res;
   }
 
   public void set(int index, T item) {
