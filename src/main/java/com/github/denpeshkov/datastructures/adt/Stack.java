@@ -27,6 +27,11 @@ public class Stack<T> implements Iterable<T> {
     return item;
   }
 
+  public T peek() {
+    if (isEmpty()) throw new NoSuchElementException();
+    return arr[N - 1];
+  }
+
   public boolean isEmpty() {
     return N == 0;
   }

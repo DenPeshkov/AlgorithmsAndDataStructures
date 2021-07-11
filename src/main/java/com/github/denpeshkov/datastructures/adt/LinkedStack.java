@@ -31,6 +31,12 @@ public class LinkedStack<T> implements Iterable<T> {
     return node.item;
   }
 
+  public T peek() {
+    if (isEmpty()) throw new NoSuchElementException();
+
+    return first.item;
+  }
+
   public boolean isEmpty() {
     return N == 0; // Or first == null
   }
