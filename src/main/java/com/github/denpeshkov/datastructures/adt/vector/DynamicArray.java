@@ -1,4 +1,4 @@
-package com.github.denpeshkov.datastructures.adt;
+package com.github.denpeshkov.datastructures.adt.vector;
 
 import java.util.Arrays;
 import java.util.Iterator;

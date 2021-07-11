@@ -1,4 +1,4 @@
-package com.github.denpeshkov.algorithms.sorting;
+package com.github.denpeshkov.algorithms.sorting.selection;
 
 public class SelectionSort {
   public static <T extends Comparable<? super T>> void sort(T[] arr) {

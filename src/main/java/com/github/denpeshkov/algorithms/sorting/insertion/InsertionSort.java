@@ -1,4 +1,4 @@
-package com.github.denpeshkov.algorithms.sorting;
+package com.github.denpeshkov.algorithms.sorting.insertion;
 
 public class InsertionSort {
   public static <T extends Comparable<? super T>> void sort(T[] arr) {

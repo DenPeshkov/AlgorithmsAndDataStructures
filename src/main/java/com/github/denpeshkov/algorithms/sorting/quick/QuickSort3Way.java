@@ -1,4 +1,4 @@
-package com.github.denpeshkov.algorithms.sorting;
+package com.github.denpeshkov.algorithms.sorting.quick;
 
 import java.util.concurrent.ThreadLocalRandom;
 

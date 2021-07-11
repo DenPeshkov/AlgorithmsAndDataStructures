@@ -1,4 +1,4 @@
-package com.github.denpeshkov.datastructures.trees;
+package com.github.denpeshkov.datastructures.trees.heap;
 
 import java.util.Arrays;
 import java.util.Iterator;

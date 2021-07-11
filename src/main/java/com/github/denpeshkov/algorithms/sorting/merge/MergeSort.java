@@ -1,4 +1,4 @@
-package com.github.denpeshkov.algorithms.sorting;
+package com.github.denpeshkov.algorithms.sorting.merge;
 
 public class MergeSort {
   public static <T extends Comparable<? super T>> void sort(T[] arr) {
