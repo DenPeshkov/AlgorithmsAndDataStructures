@@ -4,8 +4,7 @@ import java.util.concurrent.ThreadLocalRandom;
 
 public class QuickSelect {
   public static <T extends Comparable<? super T>> T select(T[] arr, int k) {
-    if (k < 1 || k > arr.length)
-      throw new IllegalArgumentException("k-th order statistic is not between 1 and " + arr.length);
+    if (k < 1 || k > arr.length) throw new IllegalArgumentException();
 
     // 0-based indexing
     k = k - 1;

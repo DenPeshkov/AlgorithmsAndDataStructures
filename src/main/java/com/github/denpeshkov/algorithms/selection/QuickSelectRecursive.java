@@ -1,11 +1,11 @@
 package com.github.denpeshkov.algorithms.selection;
 
+import java.util.Arrays;
 import java.util.concurrent.ThreadLocalRandom;
 
 public class QuickSelectRecursive {
   public static <T extends Comparable<? super T>> T select(T[] arr, int k) {
-    if (k < 1 || k > arr.length)
-      throw new IllegalArgumentException("k-th order statistic is not between 1 and " + arr.length);
+    if (k < 1 || k > arr.length) throw new IllegalArgumentException();
 
     // 0-based indexing
     return select(arr, 0, arr.length - 1, k - 1);
