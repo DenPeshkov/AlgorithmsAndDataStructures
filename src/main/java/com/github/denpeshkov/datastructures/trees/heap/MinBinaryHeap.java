@@ -55,6 +55,7 @@ public class MinBinaryHeap<T extends Comparable<? super T>> implements Iterable<
     // 1-based indexing
     i = i + 1;
     if (i < 1 || i > N) throw new IndexOutOfBoundsException();
+
     T del = arr[i];
     exchange(i, N--);
     swim(i);
@@ -70,8 +71,33 @@ public class MinBinaryHeap<T extends Comparable<? super T>> implements Iterable<
     // 1-based indexing
     i = i + 1;
     if (i < 1 || i > N) throw new IndexOutOfBoundsException();
+
     arr[i] = item;
     swim(i);
+    sink(i);
+  }
+
+  public void decreaseKey(int i, T item) {
+    // 1-based indexing
+    i = i + 1;
+    if (i < 1 || i > N) throw new IndexOutOfBoundsException();
+
+    if (arr[i].compareTo(item) == 0 || arr[i].compareTo(item) < 0)
+      throw new IllegalArgumentException();
+
+    arr[i] = item;
+    swim(i);
+  }
+
+  public void increaseKey(int i, T item) {
+    // 1-based indexing
+    i = i + 1;
+    if (i < 1 || i > N) throw new IndexOutOfBoundsException();
+
+    if (arr[i].compareTo(item) == 0 || arr[i].compareTo(item) > 0)
+      throw new IllegalArgumentException();
+
+    arr[i] = item;
     sink(i);
   }
 
