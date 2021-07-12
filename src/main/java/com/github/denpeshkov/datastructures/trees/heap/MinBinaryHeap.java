@@ -101,6 +101,13 @@ public class MinBinaryHeap<T extends Comparable<? super T>> implements Iterable<
     sink(i);
   }
 
+  public void merge(MinBinaryHeap<T> heap) {
+    arr = Arrays.copyOf(arr, arr.length + heap.size());
+    System.arraycopy(heap.arr, 1, arr, N + 1, heap.size());
+    N = arr.length - 1;
+    for (int i = N / 2; i >= 1; i--) sink(i);
+  }
+
   @Override
   public Iterator<T> iterator() {
     return new MinBinaryHeapIterator();
