@@ -8,10 +8,13 @@ public class FisherYatesShuffle {
 
     for (int i = 0; i < N; i++) {
       int r = ThreadLocalRandom.current().nextInt(i + 1);
-
-      T t = arr[i];
-      arr[i] = arr[r];
-      arr[r] = t;
+      exchange(arr, i, r);
     }
+  }
+
+  private static <T> void exchange(T[] arr, int i, int j) {
+    T t = arr[i];
+    arr[i] = arr[j];
+    arr[j] = t;
   }
 }
