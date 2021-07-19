@@ -1,13 +1,16 @@
 package com.github.denpeshkov.algorithms.sorting.merge;
 
 public class MergeSort {
+
   public static <T extends Comparable<? super T>> void sort(T[] arr) {
     T[] aux = (T[]) new Comparable[arr.length];
     sort(arr, aux, 0, arr.length - 1);
   }
 
   private static <T extends Comparable<? super T>> void sort(T[] arr, T[] aux, int p, int r) {
-    if (r <= p) return;
+    if (r <= p) {
+      return;
+    }
 
     int q = (p + r) >>> 1;
     sort(arr, aux, p, q);
@@ -20,10 +23,15 @@ public class MergeSort {
     System.arraycopy(arr, p, aux, p, r - p + 1);
 
     for (int k = p, i = p, j = q + 1; k <= r; k++) {
-      if (i > q) arr[k] = aux[j++];
-      else if (j > r) arr[k] = aux[i++];
-      else if (aux[j].compareTo(aux[i]) < 0) arr[k] = aux[j++];
-      else arr[k] = aux[i++];
+      if (i > q) {
+        arr[k] = aux[j++];
+      } else if (j > r) {
+        arr[k] = aux[i++];
+      } else if (aux[j].compareTo(aux[i]) < 0) {
+        arr[k] = aux[j++];
+      } else {
+        arr[k] = aux[i++];
+      }
     }
   }
 }
