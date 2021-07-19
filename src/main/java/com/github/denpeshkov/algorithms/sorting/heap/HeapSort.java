@@ -4,7 +4,7 @@ public class HeapSort {
   public static <T extends Comparable<? super T>> void sort(T[] arr) {
     int N = arr.length;
 
-    buildHeap(arr);
+    buildMaxHeap(arr);
 
     while (N > 1) {
       exchange(arr, 1, N--);
@@ -12,8 +12,10 @@ public class HeapSort {
     }
   }
 
-  private static <T extends Comparable<? super T>> void buildHeap(T[] arr) {
-    for (int i = arr.length / 2; i >= 1; i--) sink(arr, i, arr.length);
+  private static <T extends Comparable<? super T>> void buildMaxHeap(T[] arr) {
+    for (int i = arr.length / 2; i >= 1; i--) {
+      sink(arr, i, arr.length);
+    }
   }
 
   private static <T extends Comparable<? super T>> void sink(T[] arr, int i, int N) {
