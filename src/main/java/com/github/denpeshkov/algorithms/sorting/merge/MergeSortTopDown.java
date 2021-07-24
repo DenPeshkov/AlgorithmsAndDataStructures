@@ -1,6 +1,6 @@
 package com.github.denpeshkov.algorithms.sorting.merge;
 
-public class MergeSort {
+public class MergeSortTopDown {
 
   public static <T extends Comparable<? super T>> void sort(T[] arr) {
     T[] aux = (T[]) new Comparable[arr.length];
