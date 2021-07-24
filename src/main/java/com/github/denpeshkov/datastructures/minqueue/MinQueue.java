@@ -1,7 +1,9 @@
-package com.github.denpeshkov.datastructures.queue;
+package com.github.denpeshkov.datastructures.minqueue;
 
+import com.github.denpeshkov.datastructures.minstack.MinStack;
+import com.github.denpeshkov.datastructures.minstack.MinStack2Stacks;
+import com.github.denpeshkov.datastructures.queue.Queue;
 import com.github.denpeshkov.datastructures.stack.ArrayStack;
-import com.github.denpeshkov.datastructures.stack.MinStack;
 import com.github.denpeshkov.datastructures.stack.Stack;
 import java.util.Iterator;
 
@@ -11,8 +13,8 @@ public class MinQueue<E extends Comparable<? super E>> implements Queue<E> {
   private final MinStack<E> stack2;
 
   public MinQueue() {
-    stack1 = new MinStack<>();
-    stack2 = new MinStack<>();
+    stack1 = new MinStack2Stacks<>(ArrayStack::new);
+    stack2 = new MinStack2Stacks<>(ArrayStack::new);
   }
 
   @Override
@@ -66,6 +68,12 @@ public class MinQueue<E extends Comparable<? super E>> implements Queue<E> {
     return new MinQueueIterator();
   }
 
+  private void move() {
+    while (!stack1.isEmpty()) {
+      stack2.push(stack1.pop());
+    }
+  }
+
   private class MinQueueIterator implements Iterator<E> {
 
     final Iterator<E> stack1Iterator;
@@ -90,12 +98,6 @@ public class MinQueue<E extends Comparable<? super E>> implements Queue<E> {
     @Override
     public E next() {
       return stack2Iterator.hasNext() ? stack2Iterator.next() : stack1Iterator.next();
-    }
-  }
-
-  private void move() {
-    while (!stack1.isEmpty()) {
-      stack2.push(stack1.pop());
     }
   }
 }
