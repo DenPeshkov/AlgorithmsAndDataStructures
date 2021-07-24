@@ -52,13 +52,13 @@ public class LinkedList<E> implements List<E> {
 
   @Override
   public void add(int i, E e) {
-    if (i < 0 || i >= size()) {
+    if (i < 0 || i >= size) {
       throw new IndexOutOfBoundsException();
     }
 
     if (i == 0) {
       addFirst(e);
-    } else if (i == size() - 1) {
+    } else if (i == size - 1) {
       addLast(e);
     } else {
       Node<E> node = getNode(i - 1);
@@ -110,7 +110,7 @@ public class LinkedList<E> implements List<E> {
 
   @Override
   public E remove(int i) {
-    if (i < 0 || i >= size()) {
+    if (i < 0 || i >= size) {
       throw new IndexOutOfBoundsException();
     }
 
@@ -118,7 +118,7 @@ public class LinkedList<E> implements List<E> {
 
     if (i == 0) {
       old = removeFirst();
-    } else if (i == size() - 1) {
+    } else if (i == size - 1) {
       old = removeLast();
     } else {
       Node<E> node = getNode(i - 1);
@@ -133,14 +133,26 @@ public class LinkedList<E> implements List<E> {
 
   @Override
   public boolean remove(E e) {
-    int i;
+    if (isEmpty()) {
+      return false;
+    }
+
+    if (head.item == e) {
+      removeFirst();
+      return true;
+    }
+    if (tail.item == e) {
+      removeLast();
+      return true;
+    }
+
     Node<E> node = head;
 
-    for (i = 1; i < size && node.next.item != e; i++) {
+    while (node.next != null && node.next.item != e) {
       node = node.next;
     }
 
-    if (i == size) {
+    if (node.next == null) {
       return false;
     }
 
@@ -213,7 +225,18 @@ public class LinkedList<E> implements List<E> {
 
   @Override
   public int indexOf(E e) {
-    return 0;
+    int i;
+    Node<E> node = head;
+
+    for (i = 0; i < size && node.item != e; i++) {
+      node = node.next;
+    }
+
+    if (i == size) {
+      return -1;
+    }
+
+    return i;
   }
 
   @Override

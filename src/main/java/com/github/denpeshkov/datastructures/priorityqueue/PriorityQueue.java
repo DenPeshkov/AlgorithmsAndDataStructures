@@ -8,7 +8,7 @@ public interface PriorityQueue<E> extends Iterable<E> {
 
   E remove(int i);
 
-  E min();
+  E getMin();
 
   void changeKey(int i, E e);
 

@@ -1,6 +1,7 @@
 package com.github.denpeshkov.algorithms.sorting.heap;
 
 public class HeapSort {
+
   public static <T extends Comparable<? super T>> void sort(T[] arr) {
     int N = arr.length;
 
@@ -21,8 +22,12 @@ public class HeapSort {
   private static <T extends Comparable<? super T>> void sink(T[] arr, int i, int N) {
     while (2 * i <= N) {
       int max = 2 * i;
-      if (max + 1 <= N && compare(arr, max, max + 1) < 0) max = max + 1;
-      if (compare(arr, i, max) >= 0) break;
+      if (max + 1 <= N && compare(arr, max, max + 1) < 0) {
+        max = max + 1;
+      }
+      if (compare(arr, i, max) >= 0) {
+        break;
+      }
       exchange(arr, i, max);
       i = max;
     }

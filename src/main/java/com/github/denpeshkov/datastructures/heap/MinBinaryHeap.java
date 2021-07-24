@@ -101,7 +101,7 @@ public class MinBinaryHeap<E extends Comparable<? super E>> implements Heap<E> {
     }
 
     if (arr[i].compareTo(e) == 0 || arr[i].compareTo(e) > 0) {
-      throw new IllegalArgumentException();
+      return;
     }
 
     arr[i] = e;
@@ -118,24 +118,21 @@ public class MinBinaryHeap<E extends Comparable<? super E>> implements Heap<E> {
     }
 
     if (arr[i].compareTo(e) == 0 || arr[i].compareTo(e) < 0) {
-      throw new IllegalArgumentException();
+      return;
     }
 
     arr[i] = e;
     swim(i);
   }
 
-  public void changeKey(int i, E e) {
-    // 1-based indexing
-    i = i + 1;
+  @Override
+  public int size() {
+    return size;
+  }
 
-    if (i < 1 || i > size) {
-      throw new IndexOutOfBoundsException();
-    }
-
-    arr[i] = e;
-    swim(i);
-    sink(i);
+  @Override
+  public boolean isEmpty() {
+    return size == 0;
   }
 
   public void merge(MinBinaryHeap<E> heap) {
@@ -147,16 +144,6 @@ public class MinBinaryHeap<E extends Comparable<? super E>> implements Heap<E> {
     for (int i = size / 2; i >= 1; i--) {
       sink(i);
     }
-  }
-
-  @Override
-  public int size() {
-    return size;
-  }
-
-  @Override
-  public boolean isEmpty() {
-    return size == 0;
   }
 
   @Override

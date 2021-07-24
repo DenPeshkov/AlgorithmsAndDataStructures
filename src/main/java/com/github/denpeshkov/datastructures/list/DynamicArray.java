@@ -53,19 +53,35 @@ public class DynamicArray<E> implements List<E> {
 
   @Override
   public E removeFirst() {
+    if (isEmpty()) {
+      throw new NoSuchElementException();
+    }
+
     E old = arr[0];
 
     System.arraycopy(arr, 1, arr, 0, size - 1);
 
     arr[--size] = null;
 
+    if (size > 0 && size == arr.length / 4) {
+      resize(arr.length / 2);
+    }
+
     return old;
   }
 
   @Override
   public E removeLast() {
+    if (isEmpty()) {
+      throw new NoSuchElementException();
+    }
+
     E old = arr[--size];
     arr[size] = null;
+
+    if (size > 0 && size == arr.length / 4) {
+      resize(arr.length / 2);
+    }
 
     return old;
   }
@@ -167,17 +183,9 @@ public class DynamicArray<E> implements List<E> {
 
   @Override
   public int indexOf(E item) {
-    if (item == null) {
-      for (int i = 0; i < size; i++) {
-        if (arr[i] == null) {
-          return i;
-        }
-      }
-    } else {
-      for (int i = 0; i < size; i++) {
-        if (item.equals(arr[i])) {
-          return i;
-        }
+    for (int i = 0; i < size; i++) {
+      if (item.equals(arr[i])) {
+        return i;
       }
     }
 
