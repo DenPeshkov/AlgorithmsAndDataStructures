@@ -3,7 +3,7 @@ package com.github.denpeshkov.datastructures.queue;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
-public class ArrayQueue<E> implements Queue<E> {
+public class ArrayCircularQueue<E> implements Queue<E> {
 
   private static final int DEFAULT_CAPACITY = 16;
 
@@ -12,7 +12,7 @@ public class ArrayQueue<E> implements Queue<E> {
   private int tail;
   private int size;
 
-  public ArrayQueue() {
+  public ArrayCircularQueue() {
     arr = (E[]) new Object[DEFAULT_CAPACITY];
     head = 0;
     tail = 0;
