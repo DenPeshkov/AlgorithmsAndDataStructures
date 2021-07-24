@@ -53,7 +53,7 @@ public class MinStackPair<E extends Comparable<? super E>> implements MinStack<E
     return item1.compareTo(item2) <= 0 ? item1 : item2;
   }
 
-  private class MinValuePair {
+  public class MinValuePair {
 
     E min;
     E value;
