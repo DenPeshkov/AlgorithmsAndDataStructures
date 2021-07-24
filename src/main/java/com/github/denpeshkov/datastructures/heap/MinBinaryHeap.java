@@ -147,31 +147,6 @@ public class MinBinaryHeap<E extends Comparable<? super E>> implements Heap<E> {
     return new MinBinaryHeapIterator();
   }
 
-  private class MinBinaryHeapIterator implements Iterator<E> {
-
-    final MinBinaryHeap<E> copy;
-
-    MinBinaryHeapIterator() {
-      copy = new MinBinaryHeap<>();
-      copy.arr = Arrays.copyOf(arr, arr.length);
-      copy.size = size;
-    }
-
-    @Override
-    public boolean hasNext() {
-      return !copy.isEmpty();
-    }
-
-    @Override
-    public E next() {
-      if (!hasNext()) {
-        throw new NoSuchElementException();
-      }
-
-      return copy.removeMin();
-    }
-  }
-
   private void resize(int size) {
     arr = Arrays.copyOf(arr, size);
   }
@@ -200,6 +175,31 @@ public class MinBinaryHeap<E extends Comparable<? super E>> implements Heap<E> {
       }
       exchange(i, min);
       i = min;
+    }
+  }
+
+  private class MinBinaryHeapIterator implements Iterator<E> {
+
+    final MinBinaryHeap<E> copy;
+
+    MinBinaryHeapIterator() {
+      copy = new MinBinaryHeap<>();
+      copy.arr = Arrays.copyOf(arr, arr.length);
+      copy.size = size;
+    }
+
+    @Override
+    public boolean hasNext() {
+      return !copy.isEmpty();
+    }
+
+    @Override
+    public E next() {
+      if (!hasNext()) {
+        throw new NoSuchElementException();
+      }
+
+      return copy.removeMin();
     }
   }
 }

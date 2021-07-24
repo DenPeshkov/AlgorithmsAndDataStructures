@@ -13,17 +13,6 @@ public class LinkedStack<E> implements Stack<E> {
     first = null;
   }
 
-  private static class Node<E> {
-
-    final E item;
-    final Node<E> next;
-
-    Node(E item, Node<E> next) {
-      this.item = item;
-      this.next = next;
-    }
-  }
-
   @Override
   public void push(E e) {
     first = new Node<>(e, first);
@@ -67,6 +56,17 @@ public class LinkedStack<E> implements Stack<E> {
   @Override
   public Iterator<E> iterator() {
     return new StackIterator();
+  }
+
+  private static class Node<E> {
+
+    final E item;
+    final Node<E> next;
+
+    Node(E item, Node<E> next) {
+      this.item = item;
+      this.next = next;
+    }
   }
 
   private class StackIterator implements Iterator<E> {

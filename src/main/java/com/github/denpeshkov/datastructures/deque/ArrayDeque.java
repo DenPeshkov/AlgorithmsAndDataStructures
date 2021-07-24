@@ -115,6 +115,22 @@ public class ArrayDeque<E> implements Deque<E> {
     return new DequeIterator();
   }
 
+  private void resize(int newSize) {
+    E[] temp = (E[]) new Object[newSize];
+
+    if (tail > head) {
+      System.arraycopy(arr, head, temp, 0, tail - head);
+      tail -= head;
+    } else {
+      System.arraycopy(arr, head, temp, 0, arr.length - head);
+      System.arraycopy(arr, 0, temp, arr.length - head, tail);
+      tail += arr.length - head;
+    }
+
+    head = 0;
+    arr = temp;
+  }
+
   private class DequeIterator implements Iterator<E> {
 
     int i = head;
@@ -135,21 +151,5 @@ public class ArrayDeque<E> implements Deque<E> {
 
       return temp;
     }
-  }
-
-  private void resize(int newSize) {
-    E[] temp = (E[]) new Object[newSize];
-
-    if (tail > head) {
-      System.arraycopy(arr, head, temp, 0, tail - head);
-      tail -= head;
-    } else {
-      System.arraycopy(arr, head, temp, 0, arr.length - head);
-      System.arraycopy(arr, 0, temp, arr.length - head, tail);
-      tail += arr.length - head;
-    }
-
-    head = 0;
-    arr = temp;
   }
 }

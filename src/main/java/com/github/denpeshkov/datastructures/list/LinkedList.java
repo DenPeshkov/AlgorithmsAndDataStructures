@@ -9,17 +9,6 @@ public class LinkedList<E> implements List<E> {
   private Node<E> head;
   private Node<E> tail;
 
-  private static class Node<E> {
-
-    E item;
-    Node<E> next;
-
-    Node(E item, Node<E> next) {
-      this.item = item;
-      this.next = next;
-    }
-  }
-
   public LinkedList() {
     size = 0;
     head = null;
@@ -273,6 +262,26 @@ public class LinkedList<E> implements List<E> {
     return new LinkedListIterator();
   }
 
+  private Node<E> getNode(int index) {
+    Node<E> node = head;
+    for (int i = 0; i < index; i++) {
+      node = node.next;
+    }
+
+    return node;
+  }
+
+  private static class Node<E> {
+
+    E item;
+    Node<E> next;
+
+    Node(E item, Node<E> next) {
+      this.item = item;
+      this.next = next;
+    }
+  }
+
   private class LinkedListIterator implements Iterator<E> {
 
     Node<E> node = head;
@@ -293,14 +302,5 @@ public class LinkedList<E> implements List<E> {
 
       return item;
     }
-  }
-
-  private Node<E> getNode(int index) {
-    Node<E> node = head;
-    for (int i = 0; i < index; i++) {
-      node = node.next;
-    }
-
-    return node;
   }
 }

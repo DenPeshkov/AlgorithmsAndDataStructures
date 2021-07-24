@@ -207,6 +207,10 @@ public class DynamicArray<E> implements List<E> {
     return new DynamicArrayIterator();
   }
 
+  private void resize(int size) {
+    arr = Arrays.copyOf(arr, size);
+  }
+
   private class DynamicArrayIterator implements Iterator<E> {
 
     int i = 0;
@@ -224,9 +228,5 @@ public class DynamicArray<E> implements List<E> {
 
       return arr[i++];
     }
-  }
-
-  private void resize(int size) {
-    arr = Arrays.copyOf(arr, size);
   }
 }

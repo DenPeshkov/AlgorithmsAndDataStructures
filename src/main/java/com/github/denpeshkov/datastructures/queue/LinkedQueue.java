@@ -15,17 +15,6 @@ public class LinkedQueue<E> implements Queue<E> {
     size = 0;
   }
 
-  private static class Node<T> {
-
-    T item;
-    Node<T> next;
-
-    Node(T item, Node<T> next) {
-      this.item = item;
-      this.next = next;
-    }
-  }
-
   @Override
   public void enqueue(E e) {
     Node<E> node = new Node<>(e, null);
@@ -79,6 +68,17 @@ public class LinkedQueue<E> implements Queue<E> {
   @Override
   public Iterator<E> iterator() {
     return new QueueIterator();
+  }
+
+  private static class Node<T> {
+
+    T item;
+    Node<T> next;
+
+    Node(T item, Node<T> next) {
+      this.item = item;
+      this.next = next;
+    }
   }
 
   private class QueueIterator implements Iterator<E> {

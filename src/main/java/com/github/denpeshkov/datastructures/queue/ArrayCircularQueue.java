@@ -74,6 +74,21 @@ public class ArrayCircularQueue<E> implements Queue<E> {
     return new QueueIterator();
   }
 
+  private void resize(int size) {
+    E[] temp = (E[]) new Object[size];
+
+    if (head < tail) {
+      System.arraycopy(arr, head, temp, 0, this.size);
+    } else if (tail < head) {
+      System.arraycopy(arr, head, temp, 0, arr.length - head);
+      System.arraycopy(arr, 0, temp, arr.length - head, tail);
+    }
+
+    head = 0;
+    tail = this.size;
+    arr = temp;
+  }
+
   private class QueueIterator implements Iterator<E> {
 
     int i = head;
@@ -94,20 +109,5 @@ public class ArrayCircularQueue<E> implements Queue<E> {
 
       return item;
     }
-  }
-
-  private void resize(int size) {
-    E[] temp = (E[]) new Object[size];
-
-    if (head < tail) {
-      System.arraycopy(arr, head, temp, 0, this.size);
-    } else if (tail < head) {
-      System.arraycopy(arr, head, temp, 0, arr.length - head);
-      System.arraycopy(arr, 0, temp, arr.length - head, tail);
-    }
-
-    head = 0;
-    tail = this.size;
-    arr = temp;
   }
 }

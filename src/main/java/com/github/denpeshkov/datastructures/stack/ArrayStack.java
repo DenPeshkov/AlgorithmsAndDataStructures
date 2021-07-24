@@ -65,6 +65,10 @@ public class ArrayStack<E> implements Stack<E> {
     return new StackIterator();
   }
 
+  private void resize(int size) {
+    arr = Arrays.copyOf(arr, size);
+  }
+
   private class StackIterator implements Iterator<E> {
 
     int i = size;
@@ -82,9 +86,5 @@ public class ArrayStack<E> implements Stack<E> {
 
       return arr[--i];
     }
-  }
-
-  private void resize(int size) {
-    arr = Arrays.copyOf(arr, size);
   }
 }

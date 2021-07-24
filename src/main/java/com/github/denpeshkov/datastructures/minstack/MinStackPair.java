@@ -12,17 +12,6 @@ public class MinStackPair<E extends Comparable<? super E>> implements MinStack<E
     stack = stackFactory.get();
   }
 
-  private class MinValuePair {
-
-    E min;
-    E value;
-
-    MinValuePair(E min, E value) {
-      this.min = min;
-      this.value = value;
-    }
-  }
-
   @Override
   public void push(E e) {
     E min = isEmpty() ? e : min(getMin(), e);
@@ -60,6 +49,21 @@ public class MinStackPair<E extends Comparable<? super E>> implements MinStack<E
     return new MinStackIterator();
   }
 
+  private E min(E item1, E item2) {
+    return item1.compareTo(item2) <= 0 ? item1 : item2;
+  }
+
+  private class MinValuePair {
+
+    E min;
+    E value;
+
+    MinValuePair(E min, E value) {
+      this.min = min;
+      this.value = value;
+    }
+  }
+
   private class MinStackIterator implements Iterator<E> {
 
     final Iterator<MinValuePair> stackIterator;
@@ -77,9 +81,5 @@ public class MinStackPair<E extends Comparable<? super E>> implements MinStack<E
     public E next() {
       return stackIterator.next().value;
     }
-  }
-
-  private E min(E item1, E item2) {
-    return item1.compareTo(item2) <= 0 ? item1 : item2;
   }
 }
