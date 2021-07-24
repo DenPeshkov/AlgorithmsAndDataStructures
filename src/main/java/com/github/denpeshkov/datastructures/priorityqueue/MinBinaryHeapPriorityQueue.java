@@ -1,7 +1,6 @@
 package com.github.denpeshkov.datastructures.priorityqueue;
 
 import com.github.denpeshkov.datastructures.heap.MinBinaryHeap;
-
 import java.util.Iterator;
 
 public class MinBinaryHeapPriorityQueue<E extends Comparable<? super E>> implements

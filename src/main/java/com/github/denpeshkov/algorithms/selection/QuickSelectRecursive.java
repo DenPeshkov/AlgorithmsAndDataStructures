@@ -1,6 +1,5 @@
 package com.github.denpeshkov.algorithms.selection;
 
-import java.util.Arrays;
 import java.util.concurrent.ThreadLocalRandom;
 
 public class QuickSelectRecursive {

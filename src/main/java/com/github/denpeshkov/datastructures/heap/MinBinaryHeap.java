@@ -1,12 +1,8 @@
 package com.github.denpeshkov.datastructures.heap;
 
 import java.util.Arrays;
-import java.util.Comparator;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
-import java.util.PriorityQueue;
-import java.util.Queue;
-import java.util.Scanner;
 
 public class MinBinaryHeap<E extends Comparable<? super E>> implements Heap<E> {
 
