@@ -11,14 +11,18 @@ public class MergeSortBottomUp {
     }
   }
 
+  // [lo, mid] [mid+1, hi]
   private static <T extends Comparable<? super T>> void merge(
-      T[] arr, T[] aux, int p, int q, int r) {
-    System.arraycopy(arr, p, aux, p, r - p + 1);
+      T[] arr, T[] aux, int lo, int mid, int hi) {
+    System.arraycopy(arr, lo, aux, lo, hi - lo + 1);
 
-    for (int k = p, i = p, j = q + 1; k <= r; k++) {
-      if (i > q) {
+    int i = lo;
+    int j = mid + 1;
+
+    for (int k = lo; k <= hi; k++) {
+      if (i > mid) {
         arr[k] = aux[j++];
-      } else if (j > r) {
+      } else if (j > hi) {
         arr[k] = aux[i++];
       } else if (aux[j].compareTo(aux[i]) < 0) {
         arr[k] = aux[j++];
