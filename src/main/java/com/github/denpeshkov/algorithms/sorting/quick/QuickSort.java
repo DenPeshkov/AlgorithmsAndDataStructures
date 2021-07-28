@@ -8,28 +8,28 @@ public class QuickSort {
     sort(arr, 0, arr.length - 1);
   }
 
-  private static <T extends Comparable<? super T>> void sort(T[] arr, int p, int r) {
-    if (r <= p) {
+  private static <T extends Comparable<? super T>> void sort(T[] arr, int lo, int hi) {
+    if (hi <= lo) {
       return;
     }
-    int q = partition(arr, p, r);
-    sort(arr, p, q - 1);
-    sort(arr, q + 1, r);
+    int pivot = partition(arr, lo, hi);
+    sort(arr, lo, pivot - 1);
+    sort(arr, pivot + 1, hi);
   }
 
-  private static <T extends Comparable<? super T>> int partition(T[] arr, int p, int r) {
-    exchange(arr, p, p + ThreadLocalRandom.current().nextInt(r - p + 1));
+  private static <T extends Comparable<? super T>> int partition(T[] arr, int lo, int hi) {
+    exchange(arr, lo, lo + ThreadLocalRandom.current().nextInt(hi - lo + 1));
 
-    int i = p, j = r + 1;
-    T v = arr[p];
+    int i = lo, j = hi + 1;
+    T v = arr[lo];
     while (true) {
       while (arr[++i].compareTo(v) < 0) {
-        if (i == r) {
+        if (i == hi) {
           break;
         }
       }
       while (arr[--j].compareTo(v) > 0) {
-        if (j == p) {
+        if (j == lo) {
           break;
         }
       }
@@ -38,7 +38,7 @@ public class QuickSort {
       }
       exchange(arr, i, j);
     }
-    exchange(arr, p, j);
+    exchange(arr, lo, j);
     return j;
   }
 

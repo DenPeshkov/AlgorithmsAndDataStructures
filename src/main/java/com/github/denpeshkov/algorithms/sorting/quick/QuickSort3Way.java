@@ -8,28 +8,28 @@ public class QuickSort3Way {
     sort(arr, 0, arr.length - 1);
   }
 
-  private static <T extends Comparable<? super T>> void sort(T[] arr, int p, int r) {
-    if (r <= p) {
+  private static <T extends Comparable<? super T>> void sort(T[] arr, int lo, int hi) {
+    if (hi <= lo) {
       return;
     }
 
-    exchange(arr, p, p + ThreadLocalRandom.current().nextInt(r - p + 1));
+    exchange(arr, lo, lo + ThreadLocalRandom.current().nextInt(hi - lo + 1));
 
-    int lt = p, i = p + 1, gt = r;
-    T v = arr[p];
-    while (i <= gt) {
-      int cmp = arr[i].compareTo(v);
+    int pivot_lo = lo, pivot_mid = lo + 1, pivot_hi = hi;
+    T v = arr[lo];
+    while (pivot_mid <= pivot_hi) {
+      int cmp = arr[pivot_mid].compareTo(v);
       if (cmp < 0) {
-        exchange(arr, lt++, i++);
+        exchange(arr, pivot_lo++, pivot_mid++);
       } else if (cmp > 0) {
-        exchange(arr, i, gt--);
+        exchange(arr, pivot_mid, pivot_hi--);
       } else {
-        i++;
+        pivot_mid++;
       }
     }
 
-    sort(arr, p, lt - 1);
-    sort(arr, gt + 1, r);
+    sort(arr, lo, pivot_lo - 1);
+    sort(arr, pivot_hi + 1, hi);
   }
 
   private static <T> void exchange(T[] arr, int i, int j) {
