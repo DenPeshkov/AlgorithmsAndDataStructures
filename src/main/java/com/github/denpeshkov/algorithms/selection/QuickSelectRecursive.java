@@ -13,33 +13,34 @@ public class QuickSelectRecursive {
     return select(arr, 0, arr.length - 1, k - 1);
   }
 
-  public static <T extends Comparable<? super T>> T select(T[] arr, int p, int r, int k) {
-    if (p == r) {
-      return arr[p];
+  public static <T extends Comparable<? super T>> T select(T[] arr, int lo, int hi, int k) {
+    if (lo == hi) {
+      return arr[lo];
     }
-    int q = partition(arr, p, r);
-    if (k == q) {
+    int pivot = partition(arr, lo, hi);
+    if (k == pivot) {
       return arr[k];
-    } else if (k < q) {
-      return select(arr, p, q - 1, k);
+    } else if (k < pivot) {
+      return select(arr, lo, pivot - 1, k);
     } else {
-      return select(arr, q + 1, r, k);
+      return select(arr, pivot + 1, hi, k);
     }
   }
 
-  private static <T extends Comparable<? super T>> int partition(T[] arr, int p, int r) {
-    exchange(arr, p, p + ThreadLocalRandom.current().nextInt(r - p + 1));
+  private static <T extends Comparable<? super T>> int partition(T[] arr, int lo, int hi) {
+    exchange(arr, lo, lo + ThreadLocalRandom.current().nextInt(hi - lo + 1));
 
-    int i = p, j = r + 1;
-    T v = arr[p];
+    int i = lo, j = hi + 1;
+    T v = arr[lo];
+
     while (true) {
       while (arr[++i].compareTo(v) < 0) {
-        if (i == r) {
+        if (i == hi) {
           break;
         }
       }
       while (arr[--j].compareTo(v) > 0) {
-        if (j == p) {
+        if (j == lo) {
           break;
         }
       }
@@ -48,7 +49,8 @@ public class QuickSelectRecursive {
       }
       exchange(arr, i, j);
     }
-    exchange(arr, p, j);
+    exchange(arr, lo, j);
+
     return j;
   }
 
