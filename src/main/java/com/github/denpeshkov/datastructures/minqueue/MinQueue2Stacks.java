@@ -12,8 +12,8 @@ public class MinQueue2Stacks<E extends Comparable<? super E>> implements MinQueu
   private final MinStack<E> stack2;
 
   public MinQueue2Stacks() {
-    stack1 = new MinStack2Stacks<>(ArrayStack::new);
-    stack2 = new MinStack2Stacks<>(ArrayStack::new);
+    stack1 = new MinStack2Stacks<>();
+    stack2 = new MinStack2Stacks<>();
   }
 
   @Override

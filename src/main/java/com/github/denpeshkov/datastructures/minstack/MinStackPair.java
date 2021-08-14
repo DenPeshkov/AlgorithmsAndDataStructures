@@ -1,15 +1,15 @@
 package com.github.denpeshkov.datastructures.minstack;
 
+import com.github.denpeshkov.datastructures.stack.ArrayStack;
 import com.github.denpeshkov.datastructures.stack.Stack;
 import java.util.Iterator;
-import java.util.function.Supplier;
 
 public class MinStackPair<E extends Comparable<? super E>> implements MinStack<E> {
 
   private final Stack<MinValuePair> stack;
 
-  public MinStackPair(Supplier<Stack<MinValuePair>> stackFactory) {
-    stack = stackFactory.get();
+  public MinStackPair() {
+    stack = new ArrayStack<>();
   }
 
   @Override
