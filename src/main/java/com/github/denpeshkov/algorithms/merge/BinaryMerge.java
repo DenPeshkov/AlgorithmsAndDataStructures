@@ -2,7 +2,7 @@ package com.github.denpeshkov.algorithms.merge;
 
 import java.lang.reflect.Array;
 
-public class Merge {
+public class BinaryMerge {
 
   public static <T extends Comparable<? super T>> T[] merge(T[] a, T[] b) {
     T[] res = (T[]) Array.newInstance(a.getClass().getComponentType(), a.length + b.length);
