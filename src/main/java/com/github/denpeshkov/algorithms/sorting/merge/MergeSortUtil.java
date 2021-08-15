@@ -3,8 +3,8 @@ package com.github.denpeshkov.algorithms.sorting.merge;
 public class MergeSortUtil {
 
   // [lo, mid] [mid+1, hi]
-  public static <T extends Comparable<? super T>> void merge(
-      T[] arr, T[] aux, int lo, int mid, int hi) {
+  public static <T extends Comparable<? super T>> void merge(T[] arr, T[] aux,
+      int lo, int mid, int hi) {
     System.arraycopy(arr, lo, aux, lo, hi - lo + 1);
 
     int i = lo;
