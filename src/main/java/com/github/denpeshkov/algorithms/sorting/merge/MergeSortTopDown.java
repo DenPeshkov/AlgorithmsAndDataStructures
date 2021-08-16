@@ -1,5 +1,7 @@
 package com.github.denpeshkov.algorithms.sorting.merge;
 
+import com.github.denpeshkov.algorithms.merge.BinaryMerge;
+
 public class MergeSortTopDown {
 
   public static <T extends Comparable<? super T>> void sort(T[] arr) {
@@ -16,6 +18,6 @@ public class MergeSortTopDown {
     sort(arr, aux, lo, mid);
     sort(arr, aux, mid + 1, hi);
 
-    MergeSortUtil.merge(arr, aux, hi, lo, mid);
+    BinaryMerge.merge(arr, aux, hi, lo, mid);
   }
 }
