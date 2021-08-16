@@ -1,6 +1,6 @@
 package com.github.denpeshkov.algorithms.selection;
 
-import static com.github.denpeshkov.algorithms.sorting.quick.HoarePartition.partition;
+import com.github.denpeshkov.algorithms.sorting.quick.HoarePartition;
 
 public class QuickSelectRecursive {
 
@@ -17,7 +17,8 @@ public class QuickSelectRecursive {
     if (lo == hi) {
       return arr[lo];
     }
-    int pivot = partition(arr, lo, hi);
+    int pivot = HoarePartition.partition(arr, lo, hi);
+
     if (k == pivot) {
       return arr[k];
     } else if (k < pivot) {
