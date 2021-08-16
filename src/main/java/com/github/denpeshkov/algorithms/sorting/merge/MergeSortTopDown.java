@@ -6,6 +6,7 @@ public class MergeSortTopDown {
 
   public static <T extends Comparable<? super T>> void sort(T[] arr) {
     T[] aux = (T[]) new Comparable[arr.length];
+
     sort(arr, aux, 0, arr.length - 1);
   }
 
