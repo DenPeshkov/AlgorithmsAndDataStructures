@@ -45,7 +45,7 @@ public class MinBinaryHeap<E extends Comparable<? super E>> implements Heap<E> {
 
     E min = arr[1];
 
-    exchange(1, size--);
+    swap(1, size--);
     sink(1);
     arr[size + 1] = null;
 
@@ -66,7 +66,7 @@ public class MinBinaryHeap<E extends Comparable<? super E>> implements Heap<E> {
     }
 
     E old = arr[i];
-    exchange(i, size--);
+    swap(i, size--);
     swim(i);
     sink(i);
     arr[size + 1] = null;
@@ -151,7 +151,7 @@ public class MinBinaryHeap<E extends Comparable<? super E>> implements Heap<E> {
     arr = Arrays.copyOf(arr, size);
   }
 
-  private void exchange(int i, int j) {
+  private void swap(int i, int j) {
     E temp = arr[i];
     arr[i] = arr[j];
     arr[j] = temp;
@@ -159,7 +159,7 @@ public class MinBinaryHeap<E extends Comparable<? super E>> implements Heap<E> {
 
   private void swim(int i) {
     while (i > 1 && arr[i].compareTo(arr[i / 2]) < 0) {
-      exchange(i, i / 2);
+      swap(i, i / 2);
       i = i / 2;
     }
   }
@@ -173,7 +173,7 @@ public class MinBinaryHeap<E extends Comparable<? super E>> implements Heap<E> {
       if (arr[i].compareTo(arr[min]) <= 0) {
         break;
       }
-      exchange(i, min);
+      swap(i, min);
       i = min;
     }
   }

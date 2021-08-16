@@ -8,7 +8,7 @@ public class HeapSort {
     buildMaxHeap(arr);
 
     while (N > 1) {
-      exchange(arr, 1, N--);
+      swap(arr, 1, N--);
       sink(arr, 1, N);
     }
   }
@@ -28,7 +28,7 @@ public class HeapSort {
       if (compare(arr, i, max) >= 0) {
         break;
       }
-      exchange(arr, i, max);
+      swap(arr, i, max);
       i = max;
     }
   }
@@ -39,7 +39,7 @@ public class HeapSort {
   }
 
   // индексация в массиве с 0
-  private static <T> void exchange(T[] arr, int i, int j) {
+  private static <T> void swap(T[] arr, int i, int j) {
     T temp = arr[i - 1];
     arr[i - 1] = arr[j - 1];
     arr[j - 1] = temp;

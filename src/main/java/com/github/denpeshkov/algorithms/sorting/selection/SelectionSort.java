@@ -12,11 +12,11 @@ public class SelectionSort {
           min = j;
         }
       }
-      exchange(arr, i, min);
+      swap(arr, i, min);
     }
   }
 
-  private static <T> void exchange(T[] arr, int i, int j) {
+  private static <T> void swap(T[] arr, int i, int j) {
     T temp = arr[i];
     arr[i] = arr[j];
     arr[j] = temp;

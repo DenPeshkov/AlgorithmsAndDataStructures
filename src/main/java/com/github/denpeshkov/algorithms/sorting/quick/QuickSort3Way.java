@@ -13,16 +13,17 @@ public class QuickSort3Way {
       return;
     }
 
-    exchange(arr, lo, lo + ThreadLocalRandom.current().nextInt(hi - lo + 1));
+    swap(arr, lo, lo + ThreadLocalRandom.current().nextInt(hi - lo + 1));
 
     int pivot_lo = lo, pivot_mid = lo + 1, pivot_hi = hi;
     T v = arr[lo];
+
     while (pivot_mid <= pivot_hi) {
       int cmp = arr[pivot_mid].compareTo(v);
       if (cmp < 0) {
-        exchange(arr, pivot_lo++, pivot_mid++);
+        swap(arr, pivot_lo++, pivot_mid++);
       } else if (cmp > 0) {
-        exchange(arr, pivot_mid, pivot_hi--);
+        swap(arr, pivot_mid, pivot_hi--);
       } else {
         pivot_mid++;
       }
@@ -32,7 +33,7 @@ public class QuickSort3Way {
     sort(arr, pivot_hi + 1, hi);
   }
 
-  private static <T> void exchange(T[] arr, int i, int j) {
+  private static <T> void swap(T[] arr, int i, int j) {
     T temp = arr[i];
     arr[i] = arr[j];
     arr[j] = temp;

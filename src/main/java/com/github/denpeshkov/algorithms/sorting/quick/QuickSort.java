@@ -1,6 +1,6 @@
 package com.github.denpeshkov.algorithms.sorting.quick;
 
-import java.util.concurrent.ThreadLocalRandom;
+import static com.github.denpeshkov.algorithms.sorting.quick.HoarePartition.partition;
 
 public class QuickSort {
 
@@ -15,36 +15,5 @@ public class QuickSort {
     int pivot = partition(arr, lo, hi);
     sort(arr, lo, pivot - 1);
     sort(arr, pivot + 1, hi);
-  }
-
-  private static <T extends Comparable<? super T>> int partition(T[] arr, int lo, int hi) {
-    exchange(arr, lo, lo + ThreadLocalRandom.current().nextInt(hi - lo + 1));
-
-    int i = lo, j = hi + 1;
-    T v = arr[lo];
-    while (true) {
-      while (arr[++i].compareTo(v) < 0) {
-        if (i == hi) {
-          break;
-        }
-      }
-      while (arr[--j].compareTo(v) > 0) {
-        if (j == lo) {
-          break;
-        }
-      }
-      if (i >= j) {
-        break;
-      }
-      exchange(arr, i, j);
-    }
-    exchange(arr, lo, j);
-    return j;
-  }
-
-  private static <T> void exchange(T[] arr, int i, int j) {
-    T temp = arr[i];
-    arr[i] = arr[j];
-    arr[j] = temp;
   }
 }
