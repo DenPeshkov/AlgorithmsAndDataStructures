@@ -1,4 +1,4 @@
-package com.github.denpeshkov.algorithms.partition;
+package com.github.denpeshkov.algorithms.partition.lomuto;
 
 import java.util.function.Predicate;
 
