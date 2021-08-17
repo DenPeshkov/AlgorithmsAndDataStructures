@@ -1,4 +1,4 @@
-package com.github.denpeshkov.algorithms.merge;
+package com.github.denpeshkov.algorithms.merge.binary;
 
 import java.lang.reflect.Array;
 

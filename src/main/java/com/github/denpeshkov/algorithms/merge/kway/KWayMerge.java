@@ -1,4 +1,4 @@
-package com.github.denpeshkov.algorithms.merge;
+package com.github.denpeshkov.algorithms.merge.kway;
 
 import com.github.denpeshkov.datastructures.priorityqueue.MinBinaryHeapPriorityQueue;
 import com.github.denpeshkov.datastructures.priorityqueue.PriorityQueue;

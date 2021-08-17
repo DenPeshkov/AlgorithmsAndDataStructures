@@ -1,6 +1,6 @@
 package com.github.denpeshkov.algorithms.sorting.merge;
 
-import com.github.denpeshkov.algorithms.merge.BinaryMergeImproved;
+import com.github.denpeshkov.algorithms.merge.binary.BinaryMergeImproved;
 
 public class MergeSortImproved {
 
