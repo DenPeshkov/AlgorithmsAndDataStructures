@@ -3,7 +3,6 @@ package com.github.denpeshkov.algorithms.merge.kway;
 import com.github.denpeshkov.datastructures.priorityqueue.MinBinaryHeapPriorityQueue;
 import com.github.denpeshkov.datastructures.priorityqueue.PriorityQueue;
 import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.List;
 
 public class KWayMerge {
@@ -35,23 +34,12 @@ public class KWayMerge {
     return res.toArray(arrays[0]);
   }
 
-  private static class MinIndPair<T extends Comparable<? super T>> implements
-      Comparable<MinIndPair<T>> {
-
-    int ind;
-    T min;
-    Comparator<MinIndPair<T>> comparator;
-
-
-    public MinIndPair(int ind, T min) {
-      comparator = Comparator.comparing(pair -> pair.min);
-      this.ind = ind;
-      this.min = min;
-    }
+  record MinIndPair<T extends Comparable<? super T>>(int ind, T min)
+      implements Comparable<MinIndPair<T>> {
 
     @Override
     public int compareTo(MinIndPair<T> o) {
-      return comparator.compare(this, o);
+      return min.compareTo(o.min);
     }
   }
 }
