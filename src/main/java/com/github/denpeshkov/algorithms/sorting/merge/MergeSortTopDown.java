@@ -19,6 +19,6 @@ public class MergeSortTopDown {
     sort(arr, aux, lo, mid);
     sort(arr, aux, mid + 1, hi);
 
-    BinaryMerge.merge(arr, aux, hi, lo, mid);
+    BinaryMerge.merge(arr, aux, lo, mid, hi);
   }
 }
