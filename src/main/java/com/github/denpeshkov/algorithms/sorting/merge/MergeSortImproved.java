@@ -13,8 +13,6 @@ public class MergeSortImproved {
         int mid = lo + sz - 1;
         int hi = Math.min(lo + 2 * sz - 1, arr.length - 1);
 
-        System.out.println("a=[" + lo + ", " + mid + "], b=[" + (mid + 1) + ", " + hi + "]");
-
         if (arr[mid].compareTo(arr[mid + 1]) <= 0) {
           continue;
         }
