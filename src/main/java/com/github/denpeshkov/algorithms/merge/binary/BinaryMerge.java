@@ -1,25 +1,28 @@
 package com.github.denpeshkov.algorithms.merge.binary;
 
-import java.lang.reflect.Array;
+import java.util.ArrayList;
+import java.util.List;
 
 public class BinaryMerge {
 
   public static <T extends Comparable<? super T>> T[] merge(T[] a, T[] b) {
-    T[] res = (T[]) Array.newInstance(a.getClass().getComponentType(), a.length + b.length);
+    int N = a.length + b.length;
 
-    for (int i = 0, j = 0, k = 0; k < res.length; k++) {
+    List<T> res = new ArrayList<>(N);
+
+    for (int i = 0, j = 0, k = 0; k < N; k++) {
       if (i >= a.length) {
-        res[k] = b[j++];
+        res.add(b[j++]);
       } else if (j >= b.length) {
-        res[k] = a[i++];
+        res.add(a[i++]);
       } else if (b[j].compareTo(a[i]) < 0) {
-        res[k] = b[j++];
+        res.add(b[j++]);
       } else {
-        res[k] = a[i++];
+        res.add(a[i++]);
       }
     }
 
-    return res;
+    return res.toArray(a);
   }
 
   // a = arr[lo, mid] b = arr[mid+1, hi]

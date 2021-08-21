@@ -2,14 +2,15 @@ package com.github.denpeshkov.algorithms.merge.kway;
 
 import com.github.denpeshkov.datastructures.priorityqueue.MinBinaryHeapPriorityQueue;
 import com.github.denpeshkov.datastructures.priorityqueue.PriorityQueue;
-import java.lang.reflect.Array;
+import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.List;
 
 public class KWayMerge {
 
   public static <T extends Comparable<? super T>> T[] merge(T[]... arrays) {
     int[] indexes = new int[arrays.length];
-    T[] res = (T[]) Array.newInstance(getComponentType(arrays), length(arrays));
+    List<T> res = new ArrayList<>();
     PriorityQueue<MinIndPair<T>> priorityQueue = new MinBinaryHeapPriorityQueue<>();
 
     for (int i = 0; i < arrays.length; i++) {
@@ -18,14 +19,12 @@ public class KWayMerge {
       }
     }
 
-    int k = 0;
-
     while (!priorityQueue.isEmpty()) {
       MinIndPair<T> minIndPair = priorityQueue.removeMin();
       T min = minIndPair.min;
       int ind = minIndPair.ind;
 
-      res[k++] = min;
+      res.add(min);
       indexes[ind]++;
 
       if (indexes[ind] < arrays[ind].length) {
@@ -33,21 +32,7 @@ public class KWayMerge {
       }
     }
 
-    return res;
-  }
-
-  private static <T extends Comparable<? super T>> Class<?> getComponentType(T[][] arrays) {
-    return arrays.getClass().getComponentType().getComponentType();
-  }
-
-  private static <T> int length(T[]... arrays) {
-    int length = 0;
-
-    for (T[] arr : arrays) {
-      length += arr.length;
-    }
-
-    return length;
+    return res.toArray(arrays[0]);
   }
 
   private static class MinIndPair<T extends Comparable<? super T>> implements
