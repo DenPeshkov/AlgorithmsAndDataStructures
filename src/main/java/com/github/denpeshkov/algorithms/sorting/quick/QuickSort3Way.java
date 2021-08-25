@@ -1,6 +1,8 @@
 package com.github.denpeshkov.algorithms.sorting.quick;
 
-import com.github.denpeshkov.algorithms.sorting.quick.ThreeWayPartition.Pivot;
+import com.github.denpeshkov.algorithms.sorting.quick.partition.ThreeWayPartition;
+import com.github.denpeshkov.algorithms.sorting.quick.partition.ThreeWayPartition.Pivots;
+import java.util.concurrent.ThreadLocalRandom;
 
 public class QuickSort3Way {
 
@@ -13,9 +15,10 @@ public class QuickSort3Way {
       return;
     }
 
-    Pivot pivot = ThreeWayPartition.partition(arr, lo, hi);
+    int pivot = lo + ThreadLocalRandom.current().nextInt(hi - lo + 1);
+    Pivots pivots = ThreeWayPartition.partition(arr, lo, hi, pivot);
 
-    sort(arr, lo, pivot.lo() - 1);
-    sort(arr, pivot.hi() + 1, hi);
+    sort(arr, lo, pivots.lo() - 1);
+    sort(arr, pivots.hi() + 1, hi);
   }
 }

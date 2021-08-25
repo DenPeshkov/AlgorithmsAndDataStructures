@@ -1,7 +1,9 @@
 package com.github.denpeshkov.algorithms.sorting.quick;
 
 import com.github.denpeshkov.algorithms.sorting.insertion.InsertionSort;
-import com.github.denpeshkov.algorithms.sorting.quick.ThreeWayPartition.Pivot;
+import com.github.denpeshkov.algorithms.sorting.quick.partition.ThreeWayPartition;
+import com.github.denpeshkov.algorithms.sorting.quick.partition.ThreeWayPartition.Pivots;
+import java.util.concurrent.ThreadLocalRandom;
 
 public class QuickSortImproved {
 
@@ -20,15 +22,17 @@ public class QuickSortImproved {
         return;
       }
 
-      Pivot pivot = ThreeWayPartition.partition(arr, lo, hi);
+      int pivot = lo + ThreadLocalRandom.current().nextInt(hi - lo + 1);
+
+      Pivots pivots = ThreeWayPartition.partition(arr, lo, hi, pivot);
 
       // tail recursion elimination
-      if (pivot.lo() - lo <= hi - pivot.hi()) {
-        sort(arr, lo, pivot.lo() - 1);
-        lo = pivot.hi() + 1;
+      if (pivots.lo() - lo <= hi - pivots.hi()) {
+        sort(arr, lo, pivots.lo() - 1);
+        lo = pivots.hi() + 1;
       } else {
-        sort(arr, pivot.hi() + 1, hi);
-        hi = pivot.lo() - 1;
+        sort(arr, pivots.hi() + 1, hi);
+        hi = pivots.lo() - 1;
       }
     }
   }

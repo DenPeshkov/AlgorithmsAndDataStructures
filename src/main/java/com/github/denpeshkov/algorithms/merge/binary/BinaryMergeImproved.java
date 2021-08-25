@@ -3,8 +3,8 @@ package com.github.denpeshkov.algorithms.merge.binary;
 public class BinaryMergeImproved {
 
   // a = arr[lo, mid] b = arr[mid+1, hi]
-  public static <T extends Comparable<? super T>> void mergeImproved(T[] arr, T[] aux,
-      int lo, int mid, int hi) {
+  public static <T extends Comparable<? super T>> void mergeImproved(
+      T[] arr, T[] aux, int lo, int mid, int hi) {
     System.arraycopy(arr, lo, aux, 0, mid - lo + 1);
 
     int i = 0;

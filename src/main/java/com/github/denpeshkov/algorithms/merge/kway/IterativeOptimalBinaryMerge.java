@@ -1,10 +1,10 @@
 package com.github.denpeshkov.algorithms.merge.kway;
 
 import com.github.denpeshkov.algorithms.merge.binary.BinaryMerge;
+import com.github.denpeshkov.algorithms.sorting.radix.LsdRadixSort;
 import com.github.denpeshkov.datastructures.queue.ArrayCircularQueue;
 import com.github.denpeshkov.datastructures.queue.Queue;
 import java.util.Arrays;
-import java.util.Comparator;
 
 public class IterativeOptimalBinaryMerge {
 
@@ -12,7 +12,9 @@ public class IterativeOptimalBinaryMerge {
     Queue<T[]> lengths1 = new ArrayCircularQueue<>();
     Queue<T[]> lengths2 = new ArrayCircularQueue<>();
 
-    Arrays.sort(arrays, Comparator.comparingInt(arr -> arr.length));
+    int d = Arrays.stream(arrays).mapToInt(arr -> arr.length).max().getAsInt();
+
+    LsdRadixSort.sort(arrays, d, 9, (arr, i) -> ((int) (arr.length / Math.pow(10, i)) % 10));
 
     for (T[] array : arrays) {
       lengths1.enqueue(array);

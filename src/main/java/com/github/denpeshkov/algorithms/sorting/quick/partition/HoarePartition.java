@@ -1,11 +1,10 @@
-package com.github.denpeshkov.algorithms.sorting.quick;
-
-import java.util.concurrent.ThreadLocalRandom;
+package com.github.denpeshkov.algorithms.sorting.quick.partition;
 
 public class HoarePartition {
 
-  public static <T extends Comparable<? super T>> int partition(T[] arr, int lo, int hi) {
-    swap(arr, lo, lo + ThreadLocalRandom.current().nextInt(hi - lo + 1));
+  public static <T extends Comparable<? super T>> int partition(
+      T[] arr, int lo, int hi, int pivot) {
+    swap(arr, lo, pivot);
 
     int i = lo, j = hi + 1;
     T v = arr[lo];

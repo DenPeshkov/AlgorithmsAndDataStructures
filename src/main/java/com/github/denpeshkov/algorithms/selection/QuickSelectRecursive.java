@@ -1,6 +1,7 @@
 package com.github.denpeshkov.algorithms.selection;
 
-import com.github.denpeshkov.algorithms.sorting.quick.HoarePartition;
+import com.github.denpeshkov.algorithms.sorting.quick.partition.HoarePartition;
+import java.util.concurrent.ThreadLocalRandom;
 
 public class QuickSelectRecursive {
 
@@ -17,7 +18,10 @@ public class QuickSelectRecursive {
     if (lo == hi) {
       return arr[lo];
     }
-    int pivot = HoarePartition.partition(arr, lo, hi);
+
+    int pivot = lo + ThreadLocalRandom.current().nextInt(hi - lo + 1);
+
+    pivot = HoarePartition.partition(arr, lo, hi, pivot);
 
     if (k == pivot) {
       return arr[k];

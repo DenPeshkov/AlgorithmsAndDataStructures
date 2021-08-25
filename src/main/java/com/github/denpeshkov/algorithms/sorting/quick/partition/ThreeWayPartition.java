@@ -1,11 +1,10 @@
-package com.github.denpeshkov.algorithms.sorting.quick;
-
-import java.util.concurrent.ThreadLocalRandom;
+package com.github.denpeshkov.algorithms.sorting.quick.partition;
 
 public class ThreeWayPartition {
 
-  public static <T extends Comparable<? super T>> Pivot partition(T[] arr, int lo, int hi) {
-    swap(arr, lo, lo + ThreadLocalRandom.current().nextInt(hi - lo + 1));
+  public static <T extends Comparable<? super T>> Pivots partition(
+      T[] arr, int lo, int hi, int pivot) {
+    swap(arr, lo, pivot);
 
     int pivot_lo = lo, pivot_mid = lo + 1, pivot_hi = hi;
     T v = arr[lo];
@@ -21,16 +20,16 @@ public class ThreeWayPartition {
       }
     }
 
-    return new Pivot(pivot_lo, pivot_hi);
-  }
-
-  public record Pivot(int lo, int hi) {
-
+    return new Pivots(pivot_lo, pivot_hi);
   }
 
   private static <T> void swap(T[] arr, int i, int j) {
     T temp = arr[i];
     arr[i] = arr[j];
     arr[j] = temp;
+  }
+
+  public record Pivots(int lo, int hi) {
+
   }
 }

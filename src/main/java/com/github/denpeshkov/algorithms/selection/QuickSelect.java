@@ -1,6 +1,7 @@
 package com.github.denpeshkov.algorithms.selection;
 
-import com.github.denpeshkov.algorithms.sorting.quick.HoarePartition;
+import com.github.denpeshkov.algorithms.sorting.quick.partition.HoarePartition;
+import java.util.concurrent.ThreadLocalRandom;
 
 public class QuickSelect {
 
@@ -16,7 +17,9 @@ public class QuickSelect {
     int hi = arr.length - 1;
 
     while (hi > lo) {
-      int pivot = HoarePartition.partition(arr, lo, hi);
+      int pivot = lo + ThreadLocalRandom.current().nextInt(hi - lo + 1);
+
+      pivot = HoarePartition.partition(arr, lo, hi, pivot);
 
       if (pivot < k) {
         lo = pivot + 1;
