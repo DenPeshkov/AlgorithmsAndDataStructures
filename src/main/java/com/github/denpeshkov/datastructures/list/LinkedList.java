@@ -15,6 +15,7 @@ public class LinkedList<E> implements List<E> {
     tail = null;
   }
 
+  @Override
   public void addFirst(E e) {
     head = new Node<>(e, head);
 
@@ -25,6 +26,7 @@ public class LinkedList<E> implements List<E> {
     size++;
   }
 
+  @Override
   public void addLast(E e) {
     Node<E> node = new Node<>(e, null);
 
@@ -57,6 +59,7 @@ public class LinkedList<E> implements List<E> {
     size++;
   }
 
+  @Override
   public E removeFirst() {
     if (isEmpty()) {
       throw new NoSuchElementException();
@@ -74,6 +77,7 @@ public class LinkedList<E> implements List<E> {
     return old;
   }
 
+  @Override
   public E removeLast() {
     if (isEmpty()) {
       throw new NoSuchElementException();
@@ -150,6 +154,7 @@ public class LinkedList<E> implements List<E> {
     return true;
   }
 
+  @Override
   public E getFirst() {
     if (isEmpty()) {
       throw new NoSuchElementException();
@@ -158,6 +163,7 @@ public class LinkedList<E> implements List<E> {
     return head.item;
   }
 
+  @Override
   public E getLast() {
     if (isEmpty()) {
       throw new NoSuchElementException();
