@@ -24,8 +24,8 @@ public class IterativeOptimalBinaryMergeImproved {
     }
 
     while (lengths1.size() + lengths2.size() > 1) {
-      T[] min1 = min(lengths1, lengths2);
-      T[] min2 = min(lengths1, lengths2);
+      T[] min1 = dequeueMin(lengths1, lengths2);
+      T[] min2 = dequeueMin(lengths1, lengths2);
 
       T[] merge = BinaryMerge.merge(min1, min2);
 
@@ -35,7 +35,7 @@ public class IterativeOptimalBinaryMergeImproved {
     return lengths2.dequeue();
   }
 
-  private static <T> T[] min(Queue<T[]> queue1, Queue<T[]> queue2) {
+  private static <T> T[] dequeueMin(Queue<T[]> queue1, Queue<T[]> queue2) {
     T[] min;
 
     if (queue1.isEmpty()) {
