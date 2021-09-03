@@ -1,62 +1,35 @@
 package com.github.denpeshkov.algorithms.merge.kway;
 
 import com.github.denpeshkov.algorithms.merge.binary.BinaryMerge;
-import com.github.denpeshkov.algorithms.sorting.radix.LsdRadixSort;
-import com.github.denpeshkov.datastructures.queue.ArrayCircularQueue;
-import com.github.denpeshkov.datastructures.queue.Queue;
-import java.util.Arrays;
+import com.github.denpeshkov.datastructures.priorityqueue.MinBinaryHeapPriorityQueue;
+import com.github.denpeshkov.datastructures.priorityqueue.PriorityQueue;
 
 public class IterativeOptimalBinaryMerge {
 
   public static <T extends Comparable<? super T>> T[] merge(T[]... arrays) {
-    Queue<T[]> lengths1 = new ArrayCircularQueue<>();
-    Queue<T[]> lengths2 = new ArrayCircularQueue<>();
+    PriorityQueue<Array<T>> priorityQueue = new MinBinaryHeapPriorityQueue<>();
 
-    int d = Arrays.stream(arrays).mapToInt(arr -> arr.length).max().getAsInt();
-
-    LsdRadixSort.sort(arrays, d, 9, (arr, i) -> ((int) (arr.length / Math.pow(10, i)) % 10));
-
-    for (T[] array : arrays) {
-      lengths1.enqueue(array);
+    for (T[] arr : arrays) {
+      priorityQueue.insert(new Array<>(arr));
     }
 
-    while (lengths1.size() + lengths2.size() > 1) {
-      T[] min1 = min(lengths1, lengths2);
-      T[] min2 = min(lengths1, lengths2);
+    while (priorityQueue.size() > 1) {
+      Array<T> min1 = priorityQueue.removeMin();
+      Array<T> min2 = priorityQueue.removeMin();
 
-      T[] merge = BinaryMerge.merge(min1, min2);
+      T[] merge = BinaryMerge.merge(min1.arr, min2.arr);
 
-      lengths2.enqueue(merge);
+      priorityQueue.insert(new Array<>(merge));
     }
 
-    return lengths2.dequeue();
+    return priorityQueue.removeMin().arr();
   }
 
-  private static <T> T[] min(Queue<T[]> queue1, Queue<T[]> queue2) {
-    T[] min;
+  private static record Array<T>(T[] arr) implements Comparable<Array<T>> {
 
-    if (queue1.isEmpty()) {
-      min = queue2.dequeue();
-    } else if (queue2.isEmpty()) {
-      min = queue1.dequeue();
-    } else if (queue1.peek().length <= queue2.peek().length) {
-      min = queue1.dequeue();
-    } else {
-      min = queue2.dequeue();
+    @Override
+    public int compareTo(Array<T> o) {
+      return Integer.compare(arr.length, o.arr.length);
     }
-
-    return min;
-  }
-
-  public static void main(String[] args) {
-    Integer[] arr1 = new Integer[]{1, 2, 3, 4, 5, 6, 7, 8, 9};
-    Integer[] arr2 =
-        new Integer[]{-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1};
-    Integer[] arr3 = new Integer[]{3, 3, 3, 100, 103, 143, 145, 670, 899};
-    Integer[] arr4 = new Integer[]{};
-    Integer[] arr5 = new Integer[]{1, 3, 4};
-    Integer[] arr6 = new Integer[]{1000, 1001, 1002};
-
-    System.out.println(Arrays.toString(merge(arr1, arr2, arr3, arr4, arr5, arr6)));
   }
 }
