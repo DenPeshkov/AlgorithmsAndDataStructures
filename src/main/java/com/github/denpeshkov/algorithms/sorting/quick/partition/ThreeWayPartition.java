@@ -29,7 +29,5 @@ public class ThreeWayPartition {
     arr[j] = temp;
   }
 
-  public record Pivots(int lo, int hi) {
-
-  }
+  public record Pivots(int lo, int hi) {}
 }
