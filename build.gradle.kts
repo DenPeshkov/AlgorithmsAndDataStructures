@@ -19,27 +19,6 @@ dependencies {
 java.sourceCompatibility = JavaVersion.VERSION_16
 java.targetCompatibility = JavaVersion.VERSION_16
 
-/*tasks.withType<JavaCompile> {
-    options.encoding = "UTF-8"
-    options.compilerArgs.addAll(
-        setOf(
-            "--add-exports=jdk.compiler/com.sun.tools.javac.api=ALL-UNNAMED",
-            "--add-exports=jdk.compiler/com.sun.tools.javac.file=ALL-UNNAMED",
-            "--add-exports=jdk.compiler/com.sun.tools.javac.parser=ALL-UNNAMED",
-            "--add-exports=jdk.compiler/com.sun.tools.javac.tree=ALL-UNNAMED",
-            "--add-exports=jdk.compiler/com.sun.tools.javac.util=ALL-UNNAMED"
-        )
-    )
-}*/
-
-tasks.withType<Test> {
-    systemProperty("file.encoding", "UTF-8")
-}
-
-tasks.withType<Javadoc> {
-    options.encoding = "UTF-8"
-}
-
 spotless {
     java {
         target("src/*/java/**/*.java")
