@@ -33,12 +33,12 @@ public class HeapSort {
     }
   }
 
-  // индексация в массиве с 0
+  // 0-based indexing
   private static <T extends Comparable<? super T>> int compare(T[] arr, int i, int j) {
     return arr[i - 1].compareTo(arr[j - 1]);
   }
 
-  // индексация в массиве с 0
+  // 0-based indexing
   private static <T> void swap(T[] arr, int i, int j) {
     T temp = arr[i - 1];
     arr[i - 1] = arr[j - 1];
